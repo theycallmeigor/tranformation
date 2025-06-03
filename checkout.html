@@ -68,7 +68,7 @@
               align="center"
               animate=""
               speed=""
-              delay="none"
+              delay=""
               loop="none"
               data-secondsdelay=""
               data-minutesdelay=""
@@ -110,7 +110,7 @@
                   align="center"
                   animate="none"
                   speed="none"
-                  delay=""
+                  delay="none"
                   loop="none"
                   href="https://transformationprotein.com/cart"
                   replaceproductid=""
@@ -971,7 +971,7 @@
                   align="center"
                   animate=""
                   speed=""
-                  delay="none"
+                  delay=""
                   loop="none"
                   variantvalue=""
                   data-secondsdelay=""
@@ -1028,7 +1028,7 @@
                 align="center"
                 animate=""
                 speed=""
-                delay=""
+                delay="none"
                 loop="none"
                 data-secondsdelay=""
                 data-minutesdelay=""
@@ -1050,7 +1050,7 @@
                 align="center"
                 animate=""
                 speed=""
-                delay=""
+                delay="none"
                 loop="none"
                 data-secondsdelay=""
                 data-minutesdelay=""
@@ -1072,7 +1072,7 @@
                 align="center"
                 animate=""
                 speed=""
-                delay="none"
+                delay=""
                 loop="none"
                 data-secondsdelay=""
                 data-minutesdelay=""
@@ -1094,7 +1094,7 @@
                 align="center"
                 animate=""
                 speed=""
-                delay=""
+                delay="none"
                 loop="none"
                 data-secondsdelay=""
                 data-minutesdelay=""
@@ -1116,7 +1116,7 @@
                 align="center"
                 animate=""
                 speed=""
-                delay="none"
+                delay=""
                 loop="none"
                 data-secondsdelay=""
                 data-minutesdelay=""
@@ -1478,6 +1478,7 @@
                     </div></span
                   >
                 </div>
+
                 <div
                   data-box="true"
                   style="padding: 12px 10px; width: 100%;"
@@ -1567,24 +1568,7 @@
                                   id="cc-id-UgPI4E89Pm1T"
                                   data-element-absolute="true"
                                   class="tooltipper5"
-                                >
-                                  <div
-                                    data-text="text"
-                                    data-secondsdelay=""
-                                    id="cc-id-a4iUIkpTkXpv"
-                                  >
-                                    <div
-                                      data-text="text"
-                                      data-secondsdelay=""
-                                      id="cc-id-3rMULAM3B1q3"
-                                      class="tooltipper5box"
-                                    >
-                                      3-digit security code usually found on the
-                                      back of your card. American Express cards
-                                      have a 4-digit code located on the front.
-                                    </div>
-                                  </div>
-                                </div>
+                                ></div>
                               </div>
                             </div>
                           </div>
@@ -1599,174 +1583,6 @@
                       >
                     </div>
                   </div>
-                  <script>
-                    // =============================================================================
-                    // UPDATED RECURRING SUBSCRIPTION DISPLAY SCRIPT FOR STYLED VERSION
-                    // =============================================================================
-                    // Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-06-03 11:40:34
-                    // Current User's Login: theycallmeigor
-
-                    (function() {
-                        'use strict';
-
-                        // Helper function to safely search for recurring products in any data structure
-                        function findRecurringProductRecursive(obj, path = '') {
-                            if (!obj || typeof obj !== 'object') return null;
-
-                            // Check if current object is a recurring product
-                            if (obj.billingCycleType === 'RECURRING') {
-                                console.log(`✅ Found recurring product at: ${path}`);
-                                return obj;
-                            }
-
-                            // Search through object properties
-                            for (const [key, value] of Object.entries(obj)) {
-                                if (value && typeof value === 'object') {
-                                    // Check if value is directly a recurring product
-                                    if (value.billingCycleType === 'RECURRING') {
-                                        console.log(`✅ Found recurring product at: ${path}.${key}`);
-                                        return value;
-                                    }
-
-                                    // Recursively search deeper
-                                    const found = findRecurringProductRecursive(value, `${path}.${key}`);
-                                    if (found) return found;
-                                }
-                            }
-
-                            return null;
-                        }
-
-                        // Main function to get recurring product data from orderData
-                        function getRecurringProductData() {
-                            console.log('🔍 Getting recurring product data...');
-                            console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
-                            console.log('👤 Current User Login: theycallmeigor');
-
-                            const orderData = sessionStorage.getItem('orderData');
-
-                            if (!orderData) {
-                                console.error('❌ No orderData found in session storage');
-                                return null;
-                            }
-
-                            try {
-                                const parsedData = JSON.parse(orderData);
-                                console.log('✅ OrderData loaded successfully');
-
-                                // Use our recursive search function
-                                const recurringProduct = findRecurringProductRecursive(parsedData, 'orderData');
-
-                                if (!recurringProduct) {
-                                    console.error('❌ No recurring product found in orderData');
-                                    return null;
-                                }
-
-                                console.log('✅ Found recurring product:', recurringProduct.productName);
-                                console.log('📊 Product data:', {
-                                    name: recurringProduct.productName,
-                                    billingCycleType: recurringProduct.billingCycleType,
-                                    cycle1_price: recurringProduct.cycle1_price,
-                                    cycle2_price: recurringProduct.cycle2_price,
-                                    cycle2_shipPrice: recurringProduct.cycle2_shipPrice
-                                });
-
-                                return recurringProduct;
-
-                            } catch (error) {
-                                console.error('❌ Error parsing orderData:', error);
-                                return null;
-                            }
-                        }
-
-                        // Function to update the recurring amount display
-                        function updateRecurringAmount() {
-                            console.log('💰 Updating recurring amount display...');
-                            console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
-                            console.log('👤 Current User Login: theycallmeigor');
-
-                            const product = getRecurringProductData();
-                            if (!product) return false;
-
-                            // Get recurring price (cycle2 is the ongoing recurring price)
-                            const recurringPrice = product.cycle2_price || product.cycle3_price;
-                            const billingDelay = product.cycle2_billDelay || 30;
-
-                            if (!recurringPrice) {
-                                console.error('❌ No recurring price found');
-                                return false;
-                            }
-
-                            console.log('💵 Recurring Price:', `$${recurringPrice}`);
-                            console.log('📅 Billing Frequency:', `${billingDelay} days`);
-
-                            // Convert billing delay to human readable format
-                            let frequencyText = 'every month';
-                            if (billingDelay === 7) frequencyText = 'every week';
-                            else if (billingDelay === 14) frequencyText = 'every 2 weeks';
-                            else if (billingDelay === 30 || billingDelay === 31) frequencyText = 'every month';
-                            else frequencyText = `every ${billingDelay} days`;
-
-                            // Update the recurring amount element
-                            const recurringAmountElement = document.getElementById('recurring-amount');
-                            if (recurringAmountElement) {
-                                const displayText = `$${recurringPrice.toFixed(2)} ${frequencyText}`;
-                                recurringAmountElement.textContent = displayText;
-                                console.log('✅ Updated recurring amount display:', displayText);
-                                return true;
-                            } else {
-                                console.error('❌ Element with ID "recurring-amount" not found');
-                                console.log('🔍 Available elements with recurring in ID/class:');
-                                document.querySelectorAll('*[id*="recurring"], *[class*="recurring"]').forEach(el => {
-                                    console.log('  -', el.tagName, el.id, el.className);
-                                });
-                                return false;
-                            }
-                        }
-
-                        // Main initialization function
-                        function initRecurringDisplay() {
-                            console.log('🚀 Initializing styled recurring display...');
-                            console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
-                            console.log('👤 Current User Login: theycallmeigor');
-
-                            // Try to update immediately
-                            const recurringSuccess = updateRecurringAmount();
-
-                            if (!recurringSuccess) {
-                                console.log('⏳ Recurring amount element not found, retrying...');
-                                // Retry after elements might be loaded
-                                setTimeout(() => {
-                                    console.log('🔄 Retrying recurring amount update...');
-                                    updateRecurringAmount();
-                                }, 500);
-
-                                setTimeout(() => {
-                                    console.log('🔄 Final retry for recurring amount update...');
-                                    updateRecurringAmount();
-                                }, 2000);
-                            }
-
-                            console.log('✨ Initialization complete!');
-                        }
-
-                        // Export functions to window for manual testing
-                        window.updateRecurringAmount = updateRecurringAmount;
-                        window.getRecurringProductData = getRecurringProductData;
-
-                        // Initialize when DOM is ready
-                        if (document.readyState === 'loading') {
-                            document.addEventListener('DOMContentLoaded', initRecurringDisplay);
-                        } else {
-                            // DOM already loaded
-                            initRecurringDisplay();
-                        }
-
-                        // Also try immediate execution in case script loads after DOM
-                        setTimeout(initRecurringDisplay, 100);
-
-                    })();
-                  </script>
                 </div>
                 <div class="gold-callouts" id="cc-id-OGemqmJ7nL7T">
                   <p id="cc-id-01XQHVAC5RK2">Fast &amp; Free US shipping</p>
@@ -1865,6 +1681,254 @@
       toggleButton(couponCodeInput2, applyButton2);
        }
       					   );
+    </script>
+    <script>
+      // =============================================================================
+      // RECURRING SUBSCRIPTION DISPLAY - LAST WORKING VERSION
+      // =============================================================================
+      // Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-06-03 13:33:00
+      // Current User's Login: theycallmeigor
+
+      (function() {
+          'use strict';
+
+          // Helper function to find ALL recurring products in any data structure
+          function findAllRecurringProducts(obj, path = '') {
+              const recurringProducts = [];
+
+              if (!obj || typeof obj !== 'object') return recurringProducts;
+
+              // Check if current object is a recurring product
+              if (obj.billingCycleType === 'RECURRING') {
+                  console.log(`✅ Found recurring product at: ${path}`);
+                  recurringProducts.push(obj);
+              }
+
+              // Search through object properties
+              for (const [key, value] of Object.entries(obj)) {
+                  if (value && typeof value === 'object') {
+                      // Check if value is directly a recurring product
+                      if (value.billingCycleType === 'RECURRING') {
+                          console.log(`✅ Found recurring product at: ${path}.${key}`);
+                          recurringProducts.push(value);
+                      }
+
+                      // Recursively search deeper
+                      const found = findAllRecurringProducts(value, `${path}.${key}`);
+                      recurringProducts.push(...found);
+                  }
+              }
+
+              return recurringProducts;
+          }
+
+          // Main function to get ALL recurring product data from orderData
+          function getAllRecurringProductData() {
+              console.log('🔍 Getting ALL recurring product data...');
+              console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
+              console.log('👤 Current User Login: theycallmeigor');
+
+              const orderData = sessionStorage.getItem('orderData');
+
+              if (!orderData) {
+                  console.error('❌ No orderData found in session storage');
+                  return [];
+              }
+
+              try {
+                  const parsedData = JSON.parse(orderData);
+                  console.log('✅ OrderData loaded successfully');
+
+                  const recurringProducts = findAllRecurringProducts(parsedData, 'orderData');
+
+                  if (recurringProducts.length === 0) {
+                      console.error('❌ No recurring products found in orderData');
+                      return [];
+                  }
+
+                  // Filter out products with $0 recurring price
+                  const validRecurringProducts = recurringProducts.filter(product => {
+                      const recurringPrice = product.cycle2_price || product.cycle3_price || 0;
+                      return recurringPrice > 0;
+                  });
+
+                  console.log(`✅ Found ${recurringProducts.length} total recurring products, ${validRecurringProducts.length} with valid prices`);
+                  return validRecurringProducts;
+
+              } catch (error) {
+                  console.error('❌ Error parsing orderData:', error);
+                  return [];
+              }
+          }
+
+          // Function to get frequency text
+          function getFrequencyText(billingDelay) {
+              if (billingDelay === 7) return 'every week';
+              else if (billingDelay === 14) return 'every 2 weeks';
+              else if (billingDelay === 30 || billingDelay === 31) return 'every month';
+              else if (billingDelay === 60) return 'every 2 months';
+              else if (billingDelay === 90) return 'every 3 months';
+              else return `every ${billingDelay} days`;
+          }
+
+          // Function to group products by billing frequency
+          function groupProductsByFrequency(recurringProducts) {
+              const groups = {};
+
+              recurringProducts.forEach(product => {
+                  const billingDelay = product.cycle2_billDelay || 30;
+                  const recurringPrice = product.cycle2_price || product.cycle3_price || 0;
+
+                  // Only include products with valid recurring price
+                  if (recurringPrice > 0) {
+                      if (!groups[billingDelay]) {
+                          groups[billingDelay] = {
+                              products: [],
+                              totalPrice: 0,
+                              totalShipping: 0,
+                              billingDelay: billingDelay
+                          };
+                      }
+
+                      groups[billingDelay].products.push(product);
+                      groups[billingDelay].totalPrice += recurringPrice;
+                      groups[billingDelay].totalShipping += product.cycle2_shipPrice || 0;
+                  }
+              });
+
+              return groups;
+          }
+
+          // Function to update existing recurring amount elements
+          function updateRecurringAmountsByFrequency() {
+              console.log('💰 Updating recurring amounts by frequency...');
+              console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
+              console.log('👤 Current User Login: theycallmeigor');
+
+              const recurringProducts = getAllRecurringProductData();
+              if (recurringProducts.length === 0) return false;
+
+              const frequencyGroups = groupProductsByFrequency(recurringProducts);
+
+              console.log('📊 Products grouped by frequency:');
+              Object.entries(frequencyGroups).forEach(([frequency, group]) => {
+                  const frequencyText = getFrequencyText(parseInt(frequency));
+                  console.log(`  ${frequencyText}: ${group.products.length} products, $${group.totalPrice.toFixed(2)} subtotal`);
+              });
+
+              // Update main recurring amount with subtotal only
+              const grandTotalSubtotal = Object.values(frequencyGroups).reduce((sum, group) => sum + group.totalPrice, 0);
+              const recurringAmountElement = document.getElementById('recurring-amount');
+              if (recurringAmountElement) {
+                  if (Object.keys(frequencyGroups).length === 1) {
+                      const singleGroup = Object.values(frequencyGroups)[0];
+                      const frequencyText = getFrequencyText(singleGroup.billingDelay);
+                      recurringAmountElement.textContent = `$${singleGroup.totalPrice.toFixed(2)} ${frequencyText}`;
+                  } else {
+                      recurringAmountElement.textContent = `$${grandTotalSubtotal.toFixed(2)} (multiple frequencies)`;
+                  }
+                  console.log('✅ Updated main recurring amount display:', recurringAmountElement.textContent);
+              }
+
+              return true;
+          }
+
+          // Function to update external shipping container
+          function updateExternalShippingContainer() {
+              console.log('🚚 Updating external shipping container...');
+              console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
+              console.log('👤 Current User Login: theycallmeigor');
+
+              const shippingContainer = document.getElementById('recurring-shipments-external');
+              if (!shippingContainer) {
+                  console.log('ℹ️ External shipping container not found');
+                  return false;
+              }
+
+              const recurringProducts = getAllRecurringProductData();
+              if (recurringProducts.length === 0) return false;
+
+              const shippingData = recurringProducts.map(product => {
+                  const billingDelay = product.cycle2_billDelay || 30;
+                  const frequencyText = getFrequencyText(billingDelay);
+                  const shippingPrice = product.cycle2_shipPrice || 0;
+
+                  return {
+                      productName: product.productName || product.name,
+                      shippingPrice: shippingPrice,
+                      frequencyText: frequencyText,
+                      isFreeShipping: shippingPrice === 0
+                  };
+              });
+
+              shippingContainer.innerHTML = `
+                  <div class="recurring-shipments-header"><h3>Recurring shipments</h3></div><div class="recurring-shipments-content">
+                      ${shippingData.map(item => `
+                          <div class="shipment-item"><div class="product-name">${item.productName}</div><div class="shipping-details"><span class="shipping-type">Standard Shipping</span> •
+                                  <span class="shipping-cost">${item.isFreeShipping ? 'Free shipping' : '$' + item.shippingPrice.toFixed(2)} ${item.frequencyText}</span></div></div>
+                      `).join('')}
+                  </div>
+              `;
+
+              console.log('✅ External shipping container updated');
+              return true;
+          }
+
+          // Backward compatibility functions
+          function updateRecurringAmount() {
+              return updateRecurringAmountsByFrequency();
+          }
+
+          function updateRecurringShipping() {
+              return updateExternalShippingContainer();
+          }
+
+          // Main initialization function
+          function initRecurringDisplay() {
+              console.log('🚀 Initializing recurring display...');
+              console.log('⏰ Current Date and Time (UTC):', new Date().toISOString().replace('T', ' ').substring(0, 19));
+              console.log('👤 Current User Login: theycallmeigor');
+
+              // Update amounts and shipping
+              updateRecurringAmountsByFrequency();
+              updateExternalShippingContainer();
+
+              // Retry after elements might be loaded
+              setTimeout(() => {
+                  console.log('🔄 Retrying updates...');
+                  updateRecurringAmountsByFrequency();
+                  updateExternalShippingContainer();
+              }, 500);
+
+              setTimeout(() => {
+                  console.log('🔄 Final retry...');
+                  updateRecurringAmountsByFrequency();
+                  updateExternalShippingContainer();
+              }, 2000);
+
+              console.log('✨ Initialization complete!');
+          }
+
+          // Export functions to window for manual testing
+          window.updateRecurringAmount = updateRecurringAmount;
+          window.updateRecurringShipping = updateRecurringShipping;
+          window.updateRecurringAmountsByFrequency = updateRecurringAmountsByFrequency;
+          window.updateExternalShippingContainer = updateExternalShippingContainer;
+          window.getAllRecurringProductData = getAllRecurringProductData;
+          window.initRecurringDisplay = initRecurringDisplay;
+
+          // Initialize when DOM is ready
+          if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initRecurringDisplay);
+          } else {
+              // DOM already loaded
+              initRecurringDisplay();
+          }
+
+          // Also try immediate execution in case script loads after DOM
+          setTimeout(initRecurringDisplay, 100);
+
+      })();
     </script>
   </body>
 </html>
