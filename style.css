@@ -2151,6 +2151,16 @@ body.dom-pending *,
   .frequency-header h3 {
     font-size: 18px;
   }
+  .recurring-shipments-section {
+    padding: 16px;
+    margin: 16px 0px;
+  }
+  .recurring-shipments-header h3 {
+    font-size: 18px;
+  }
+  .shipment-item {
+    padding: 10px 0px;
+  }
 }
 @media only screen and (min-width: 490px) and (max-width: 610px) {
   #cc-id-XNE4Rm21mXTM {
@@ -2305,6 +2315,20 @@ body.dom-pending *,
   .tooltipper5 .tooltipper5box {
     right: -80% !important;
   }
+  .recurring-shipments-section {
+    padding: 12px;
+    margin: 12px 0px;
+    border-radius: 6px;
+  }
+  .recurring-shipments-header h3 {
+    font-size: 16px;
+  }
+  .product-name {
+    font-size: 13px;
+  }
+  .shipping-details {
+    font-size: 13px;
+  }
 }
 @media only screen and (max-width: 375px) {
   #cc-id-XNE4Rm21mXTM {
@@ -2404,6 +2428,7 @@ body.dom-pending *,
   border-radius: 8px;
   background-color: rgb(248, 249, 250);
   padding: 20px;
+  border: 1px solid rgb(225, 229, 233);
 }
 .recurring-shipments-header {
   margin-bottom: 16px;
@@ -2423,6 +2448,8 @@ body.dom-pending *,
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 12px 0px;
+  border-bottom: 1px solid rgb(225, 229, 233);
 }
 .product-name {
   font-size: 14px;
@@ -2435,12 +2462,24 @@ body.dom-pending *,
   font-size: 14px;
   color: rgb(26, 26, 26);
   font-weight: 500;
+  line-height: 1.4;
 }
 .shipping-type {
   font-weight: 600;
 }
 .shipping-cost {
   font-weight: 500;
+}
+.shipment-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+@media print {
+  .recurring-shipments-section {
+    break-inside: avoid;
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: none;
+  }
 }
 #cc-id-CI4UVhQgIh99 {
   margin-left: 4px;
@@ -2485,7 +2524,7 @@ div[role="row"]._1qy6ue60 {
   align-items: center;
   justify-content: space-between;
   padding: 12px 0px;
-  border-bottom: 1px solid rgb(225, 225, 225);
+  border-top: 1px solid rgb(225, 225, 225);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
 }
